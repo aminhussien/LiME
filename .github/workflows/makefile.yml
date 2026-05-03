@@ -1,0 +1,24 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Enter SRC
+      run: cd src
+      
+    - name: Installing dependencies
+      run: sudo apt install build-essential linux-headers-$(uname -r)
+      
+    - name: run make
+      run: make
